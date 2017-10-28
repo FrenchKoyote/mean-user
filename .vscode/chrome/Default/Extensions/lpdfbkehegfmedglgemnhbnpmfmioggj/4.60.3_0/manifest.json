@@ -1,0 +1,23 @@
+{
+   "background": {
+      "page": "background.html",
+      "persistent": false
+   },
+   "content_scripts": [ {
+      "js": [ "pwmgr.js" ],
+      "matches": [ "http://*/*", "https://*/*" ],
+      "run_at": "document_end"
+   } ],
+   "description": "An extension to support Lenovo's ThinkVantage Password Manager in Google Chrome!",
+   "icons": {
+      "128": "pwmgr128.png",
+      "16": "pwmgr16.png",
+      "48": "pwmgr48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu+q6J35B0KXC01M9QKw4ou/X9iGGK50tjsMgUv58Dd1tBdxvm8wJOcDLJu7ONXqSK8bG1LumaQ5SCTUqTxugMiUvLTQRGKSZAcbAASiMEpokJP0n+kWIN3wrJR1j3ykJKVDD2JJtGnRg2PPqx65OxJ67jS/QrZrFw6fMHHoTDhHpDfZ9uFlOKv3AliM/eIjYu8ooQVxIgSTa5WrRqARlqk5VXx7hiRVx8+p1oqBh1eje+oVM7A+YcFsTNyXNIglFauXfUNHw8J2hIYUTa6UEWYdRR68tSx8WE8+2K0ollolPfZBcUeHOag5N/D8c/pz38O1PW5GIUAsH0I1Zoh44swIDAQAB",
+   "manifest_version": 2,
+   "name": "ThinkVantage Password Manager",
+   "permissions": [ "http://*/*", "https://*/*", "nativeMessaging" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "4.60.3"
+}

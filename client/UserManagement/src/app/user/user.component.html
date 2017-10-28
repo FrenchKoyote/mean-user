@@ -1,0 +1,106 @@
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+      User Management
+  </div>
+  <div class='panel-body'>
+      <div class='table-responsive'>
+          <div style="padding-bottom:10px"><button class="btn btn-primary" (click)="addUser()">Add</button></div>
+          <div class="alert alert-info" role="alert" *ngIf="indLoading"><img src="https://www.smallbudgethosting.com/clients/templates/flathost/img/gears.gif" width="32" height="32" /> Loading...</div>
+          <div *ngIf='users && users.length==0' class="alert alert-info" role="alert">No record found!</div>
+          <table class='table table-striped' *ngIf='users && users.length'>
+              <thead>
+                  <tr>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Gender</th>
+                      <th>Email</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let user of users">
+                      <td>{{user.FirstName}}</td>
+                      <td>{{user.LastName}}</td>
+                      <td>{{user.Gender}}</td>
+                      <td>{{user.Email}}</td>
+                      <td>
+                          <button title="Edit" class="btn btn-primary" (click)="editUser(user._id)">Edit</button>
+                          <button title="Delete" class="btn btn-danger" (click)="deleteUser(user._id)">Delete</button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+          <div>
+          </div>
+      </div>
+      <div *ngIf="msg" role="alert" class="alert alert-info alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <span class="sr-only">Error:</span>
+          {{msg}}
+      </div>
+  </div>
+</div>
+
+<bs-modal #modal>
+  <form novalidate (ngSubmit)="onSubmit(userFrm)" [formGroup]="userFrm">
+      <bs-modal-header [showDismiss]="true">
+          <h4 class="modal-title">{{modalTitle}}</h4>
+      </bs-modal-header>
+      <bs-modal-body>
+        <div class="form-group">
+          <div>
+            <span>First Name</span>
+            <input type="text" class="form-control" placeholder="First Name" formControlName="FirstName">
+          </div>
+          <div>
+            <span>Last Name</span>
+            <input type="text" class="form-control" placeholder="Last Name" formControlName="LastName">
+          </div>
+          <div>
+              <span>Gender*</span>
+              <select class="form-control" formControlName="Gender">
+                <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
+              </select>
+          </div>
+          <div>
+            <span for="email">Email</span>
+            <input type="text" class="form-control" class="form-control" placeholder="Email" formControlName="Email">
+          </div>
+          <div>
+            <span for="date">Date of Birth</span>
+            <input type="text" class="form-control" placeholder="DOB" formControlName="DOB">
+          </div>
+          <div>
+            <span for="city">City</span>
+            <input type="text" class="form-control" placeholder="City" formControlName="City">
+          </div>
+        <div>
+          <span>State*</span>
+          <select class="form-control" formControlName="State">
+            <option *ngFor="let state of states" [value]="state">{{state}}</option>
+          </select>
+        </div>
+        <div>
+          <span for="zip">Zip</span>
+          <input type="text" class="form-control" placeholder="Zip" formControlName="Zip">
+        </div>
+        <div>
+            
+          <span>Country*</span>
+  
+          <select class="form-control" formControlName="Country">
+            <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+          </select>
+    
+        </div>
+      </div>
+      </bs-modal-body>
+      <bs-modal-footer>
+          <div>
+              <a class="btn btn-default" (click)="modal.dismiss()">Cancel</a>
+              <button type="submit" [disabled]="userFrm.invalid" class="btn btn-primary">{{modalBtnTitle}}</button>
+          </div>
+      </bs-modal-footer>
+  </form>
+</bs-modal>

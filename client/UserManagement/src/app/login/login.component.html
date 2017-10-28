@@ -1,0 +1,8 @@
+<h4 *ngIf="_authService.isAuthenticated() ; else nologin">
+  You are logged in! <a (click)="_authService.logout()" class="btn btn-warning">Log Out</a>, Go to <a href="/user" class="btn btn-info">User Management</a>
+</h4>
+<ng-template #nologin>
+ <h4>
+  You are not logged in! Please <a (click)="_authService.login()" class="btn btn-success">Log In</a> to continue.
+ </h4>
+</ng-template>
